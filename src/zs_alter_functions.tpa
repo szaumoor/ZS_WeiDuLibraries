@@ -482,10 +482,31 @@ END
 
 DEFINE_PATCH_FUNCTION ALTER_CRE
 INT_VAR
+    name = "-2"
+    tooltip = "-2"
     current_health = "-1"
     max_health = "-1"
     class = "-1"
+STR_VAR
+    dialog = ~none~
 BEGIN
+
+    PATCH_IF name > "-2" BEGIN
+        WRITE_LONG 0x08 name
+    END ELSE BEGIN
+        PATCH_IF name < "-2" BEGIN
+            PATCH_WARN "Passed a wrong value to name: %name%"
+        END
+    END
+
+    PATCH_IF ref_desc > "-2" BEGIN
+        WRITE_LONG 0x0c tooltip
+    END ELSE BEGIN
+        PATCH_IF tooltip < "-2" BEGIN
+            PATCH_WARN "Passed a wrong value to tooltip: %tooltip%"
+        END
+    END
+
     PATCH_IF current_health > "-1" BEGIN
         WRITE_SHORT 0x24 current_health
     END ELSE BEGIN
@@ -506,6 +527,9 @@ BEGIN
         PATCH_IF class < "-1" BEGIN
             PATCH_WARN "Passed a wrong value to class: %class%"
         END
+    END
+    PATCH_IF "%dialog%" STRING_COMPARE_CASE "none" != 0 BEGIN
+        WRITE_ASCII 0x2cc dialog #8
     END
 END
 
