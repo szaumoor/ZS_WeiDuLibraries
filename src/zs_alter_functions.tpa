@@ -499,7 +499,7 @@ BEGIN
         END
     END
 
-    PATCH_IF ref_desc > "-2" BEGIN
+    PATCH_IF tooltip > "-2" BEGIN
         WRITE_LONG 0x0c tooltip
     END ELSE BEGIN
         PATCH_IF tooltip < "-2" BEGIN
