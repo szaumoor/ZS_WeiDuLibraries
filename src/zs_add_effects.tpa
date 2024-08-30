@@ -121,6 +121,8 @@ BEGIN
             def_power=pwr
             def_type=t
             def_insertpoint=ip
+            def_savingthrow = stype
+            def_savebonus = sbonus
         STR_VAR
             function_name = ~ADD_SPELL_EFFECT~
             effect_codes = ~%effects%~
