@@ -84,7 +84,7 @@ BEGIN
             def_timing = 0
             def_parameter1 = p1
             def_parameter2 = p2
-            def_duration=0
+            def_duration=dur
             def_resist_dispel = rd
             def_power=pwr
             def_type=t
@@ -121,7 +121,7 @@ BEGIN
             def_power=pwr
             def_type=t
             def_insertpoint=ip
-            def_savingthrow = stype
+            def_savetype = stype
             def_savebonus = sbonus
         STR_VAR
             function_name = ~ADD_SPELL_EFFECT~
