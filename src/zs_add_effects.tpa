@@ -103,8 +103,8 @@ INT_VAR
     rd=1
     pwr=1
     ip="-1"
-    stype="-1"
-    sbonus="-1"
+    stype = 0
+    sbonus = 0
 STR_VAR
     effects=""
 BEGIN
@@ -114,7 +114,7 @@ BEGIN
             def_timing = tmg
             def_parameter1 = p1
             def_parameter2 = p2
-            def_duration=0
+            def_duration=dur
             def_resist_dispel = rd
             def_power=pwr
             def_type=t
