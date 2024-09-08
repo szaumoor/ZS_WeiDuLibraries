@@ -3,7 +3,7 @@ INT_VAR
     p1 = 0
     p2 = 0
     ip = "-1"
-    spec = "-1"
+    spec = 0
 STR_VAR
     effects = ~~
 BEGIN
