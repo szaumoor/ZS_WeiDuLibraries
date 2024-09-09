@@ -120,7 +120,6 @@ BEGIN
             ability_offset += bytes * h
             SET t = BYTE_AT (ability_offset)
             PATCH_IF t = type BEGIN
-                PATCH_PRINT "Types match at header %h%: %t% == %type%!"
                 header = h
             END
         END
