@@ -80,7 +80,7 @@ INT_VAR
 STR_VAR
     effects=""
 BEGIN
-    LPF CHECK_EXTENSION STR_VAR extension = "ITM" END
+    LPF CHECK_EXTENSION STR_VAR extension = "SPL" END
     LPF a7_auto_apply_spl_effect
         INT_VAR
             def_target = 1
