@@ -48,7 +48,7 @@ STR_VAR
     ground_icon = ~none~
     desc_img = ~none~
 BEGIN
-
+    LPF CHECK_EXTENSION STR_VAR extension = "ITM" END
     PATCH_IF unid_ref_name > "-2" BEGIN
         WRITE_LONG 0x08 unid_ref_name
     END ELSE BEGIN
@@ -333,6 +333,7 @@ INT_VAR
     parameter4 = "-1"
     secondary_type = "-1"
 BEGIN
+    LPF CHECK_EXTENSION STR_VAR extension = "EFF" END
     PATCH_IF parameter1 > "-999" BEGIN
         WRITE_LONG 0x1c parameter1
     END ELSE BEGIN
@@ -380,6 +381,7 @@ STR_VAR
     casting_sound = ~none~
     icon = ~none~
 BEGIN
+    LPF CHECK_EXTENSION STR_VAR extension = "SPL" END
     PATCH_IF ref_name > "-2" BEGIN
         WRITE_LONG 0x08 ref_name
     END ELSE BEGIN
@@ -482,31 +484,12 @@ END
 
 DEFINE_PATCH_FUNCTION ALTER_CRE
 INT_VAR
-    name = "-2"
-    tooltip = "-2"
     current_health = "-1"
     max_health = "-1"
     class = "-1"
-STR_VAR
-    dialog = ~none~
+    alignment = "-1"
 BEGIN
-
-    PATCH_IF name > "-2" BEGIN
-        WRITE_LONG 0x08 name
-    END ELSE BEGIN
-        PATCH_IF name < "-2" BEGIN
-            PATCH_WARN "Passed a wrong value to name: %name%"
-        END
-    END
-
-    PATCH_IF tooltip > "-2" BEGIN
-        WRITE_LONG 0x0c tooltip
-    END ELSE BEGIN
-        PATCH_IF tooltip < "-2" BEGIN
-            PATCH_WARN "Passed a wrong value to tooltip: %tooltip%"
-        END
-    END
-
+    LPF CHECK_EXTENSION STR_VAR extension = "CRE" END
     PATCH_IF current_health > "-1" BEGIN
         WRITE_SHORT 0x24 current_health
     END ELSE BEGIN
@@ -528,8 +511,12 @@ BEGIN
             PATCH_WARN "Passed a wrong value to class: %class%"
         END
     END
-    PATCH_IF "%dialog%" STRING_COMPARE_CASE "none" != 0 BEGIN
-        WRITE_ASCII 0x2cc dialog #8
+    PATCH_IF alignment > "-1" BEGIN
+        WRITE_BYTE 0x27b alignment
+    END ELSE BEGIN
+        PATCH_IF alignment < "-1" OR alignment > 255 BEGIN
+            PATCH_WARN "Passed a wrong value to class: %alignment%"
+        END
     END
 END
 
@@ -538,8 +525,8 @@ INT_VAR
     trap_size = "-1"
     explosion_size = "-1"
 BEGIN
+    LPF CHECK_EXTENSION STR_VAR extension = "PRO" END
     READ_SHORT 0x8 projectile_type
-
     PATCH_IF trap_size > "-1" BEGIN
         PATCH_IF projectile_type = 3 BEGIN
             WRITE_SHORT 0x204 trap_size
@@ -563,6 +550,7 @@ INT_VAR
     match_timing = "-1"
     timing = "-1"
 BEGIN
+    LPF CHECK_EXTENSION STR_VAR extension = "CRE" END
     READ_LONG 0x2c4 effects_offset
     READ_LONG 0x2c8 effects_num
     SET effect_bytes = 0
