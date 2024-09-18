@@ -7,6 +7,7 @@ INT_VAR
 STR_VAR
     effects = ~~
 BEGIN
+    LPF CHECK_EXTENSION STR_VAR extension = "ITM" END
     LPF a7_auto_apply_spl_effect
         INT_VAR
             def_target = 1
@@ -42,6 +43,7 @@ STR_VAR
     res = ~~
     effects = ~~
 BEGIN
+    LPF CHECK_EXTENSION STR_VAR extension = "ITM" END
     LPF a7_auto_apply_spl_effect
         INT_VAR
             def_target = tgt
@@ -78,6 +80,7 @@ INT_VAR
 STR_VAR
     effects=""
 BEGIN
+    LPF CHECK_EXTENSION STR_VAR extension = "ITM" END
     LPF a7_auto_apply_spl_effect
         INT_VAR
             def_target = 1
@@ -110,6 +113,7 @@ INT_VAR
 STR_VAR
     effects=""
 BEGIN
+    LPF CHECK_EXTENSION STR_VAR extension = "SPL" END
     LPF a7_auto_apply_spl_effect
         INT_VAR
             def_target = 2
