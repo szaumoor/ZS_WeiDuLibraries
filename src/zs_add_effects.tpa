@@ -110,13 +110,14 @@ INT_VAR
     ip="-1"
     stype = 0
     sbonus = 0
+    tgt=2
 STR_VAR
     effects=""
 BEGIN
     LPF CHECK_EXTENSION STR_VAR extension = "SPL" END
     LPF a7_auto_apply_spl_effect
         INT_VAR
-            def_target = 2
+            def_target = tgt
             def_timing = tmg
             def_parameter1 = p1
             def_parameter2 = p2
